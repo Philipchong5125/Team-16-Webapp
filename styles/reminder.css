@@ -1,0 +1,49 @@
+h3 {
+    padding-top: 3em;
+    text-align: center;
+}
+
+h4 {
+    padding-top: 1em;
+    text-align: center;
+    padding-bottom: 2.5em;
+}
+
+button.home{
+    float: right;
+    background-color: white;
+    border-color: white;
+    padding-right: 1em;
+}
+
+button.time {
+    display: block;
+    font-weight: bold;
+    margin: 3em auto 2em auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.savecancel {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 5em;;
+}
+
+button.cancel {
+    float: left;
+    width: 100px;
+}
+
+button.save {
+    float: right;
+    width: 100px;
+}
+
+div.switch {
+    display:block;
+    width: 100px;
+    margin: 3em auto 2em auto;
+    font-weight: bold;
+    color:blue;
+}
