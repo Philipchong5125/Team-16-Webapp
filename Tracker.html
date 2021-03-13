@@ -2,8 +2,17 @@
 <html>
 
 <head>
+    <style>
+        .container{
+            text-align: center;
+        }
+        #chartdiv{
+            width: 100%;
+            height: 500px;
+        }
+    </style>
     <meta charset="utf-8">
-    <title>My BCIT Project</title>
+    <title>WiRi</title>
     <meta name="comp1800 boilerplate code" content="my bcit project">
     <meta name="author" content="BCIT">
 
@@ -24,7 +33,7 @@
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
     <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Wiri</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -37,13 +46,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Set Reminder</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="#">Guided Meditation</a>
                     </li>
                 </ul>
             </div>
@@ -51,9 +57,14 @@
     </nav>
 
     <div class="container">
-        <h1 class="display-4">Hello, From Tristan!</h1>
-      <p>This is a Tracker!</p>
+        <h1 class="display-4">WiRi Tracker </h1>
+      <p>Your Progress:</p>
+      <p>Y-axis marks the amount of time you've spent meditating. X-axis marks the date in which you did the meditation:</p>
     </div>
+    <div id = "chartdiv"></div>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
 
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
@@ -67,9 +78,55 @@
     <!--------------------------------------------------------------------->
     <nav class="navbar fixed-bottom navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Team 16 is the best!</a>
+            <a class="navbar-brand" href="#">WiRi: your meditation buddy!</a>
+            
         </div>
     </nav>
+
+    <script>
+        am4core.ready(function() {
+        
+        // Themes begin
+        am4core.useTheme(am4themes_animated);
+        // Themes end
+        
+        var chart = am4core.create("chartdiv", am4charts.XYChart);
+        
+        var data = [];
+        var value = 50;
+        for(var i = 0; i < 300; i++){
+          var date = new Date();
+          date.setHours(0,0,0,0);
+          date.setDate(i);
+          value -= Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 10);
+          data.push({date:date, value: value});
+        }
+        
+        chart.data = data;
+        
+        // Create axes
+        var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        dateAxis.renderer.minGridDistance = 60;
+        
+        var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+        
+        // Create series
+        var series = chart.series.push(new am4charts.LineSeries());
+        series.dataFields.valueY = "value";
+        series.dataFields.dateX = "date";
+        series.tooltipText = "{value}"
+        
+        series.tooltip.pointerOrientation = "vertical";
+        
+        chart.cursor = new am4charts.XYCursor();
+        chart.cursor.snapToSeries = series;
+        chart.cursor.xAxis = dateAxis;
+        
+        //chart.scrollbarY = new am4core.Scrollbar();
+        chart.scrollbarX = new am4core.Scrollbar();
+        
+        }); // end am4core.ready()
+        </script>
 </body>
 
 </html>
