@@ -87,8 +87,20 @@ button.back{
 }
 
 .am-pm button{
-    width: 80%; 
-    
-    
+    width: 80%;     
 }
 
+.sun {
+    justify-items: center;
+    display: grid;
+    width: 100%;
+}
+
+.sunday {
+    width: 13.5%;
+}
+
+button.days {
+    width: 80%;
+    margin-bottom: 25%;
+}
