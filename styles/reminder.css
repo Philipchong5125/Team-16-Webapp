@@ -1,0 +1,106 @@
+h3 {
+    padding-top: 3em;
+    text-align: center;
+}
+
+h2 {
+    padding-top: 1em;
+    text-align: center;
+}
+
+h4 {
+    padding-top: 1em;
+    text-align: center;
+    padding-bottom: 2.5em;
+}
+
+button.home{
+    float: right;
+    background-color: white;
+    border-color: white;
+    padding-right: 1em;
+}
+
+button.time {
+    display: block;
+    font-weight: bold;
+    margin: 3em auto 2em auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.savecancel {
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 5em;;
+}
+
+button.cancel {
+    float: left;
+    width: 100px;
+}
+
+button.save {
+    float: right;
+    width: 100px;
+}
+
+div.switch {
+    display:block;
+    width: 100px;
+    margin: 3em auto 2em auto;
+    font-weight: bold;
+    color:blue;
+}
+
+.number-pad {
+    margin-top: 2em;
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-items: center;
+    width: 100%;
+    padding-left: 25%;
+    padding-right: 25%;  
+}
+
+button.number {
+    width: 80%;
+    margin-bottom: 6%;
+}
+
+button.back{
+    background-color: white;
+    border-color:blue;
+    width: 45%; 
+    
+}
+
+.am-pm {
+    padding-top: 4%;
+    padding-right: 34%;
+    padding-left: 33%;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    
+}
+
+.am-pm button{
+    width: 80%;     
+}
+
+.sun {
+    justify-items: center;
+    display: grid;
+    width: 100%;
+}
+
+.sunday {
+    width: 13.5%;
+}
+
+button.days {
+    width: 80%;
+    margin-bottom: 25%;
+}
