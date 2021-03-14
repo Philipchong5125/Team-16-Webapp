@@ -3,6 +3,11 @@ h3 {
     text-align: center;
 }
 
+h2 {
+    padding-top: 1em;
+    text-align: center;
+}
+
 h4 {
     padding-top: 1em;
     text-align: center;
@@ -47,3 +52,43 @@ div.switch {
     font-weight: bold;
     color:blue;
 }
+
+.number-pad {
+    margin-top: 2em;
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    justify-items: center;
+    width: 100%;
+    padding-left: 25%;
+    padding-right: 25%;  
+}
+
+button.number {
+    width: 80%;
+    margin-bottom: 6%;
+}
+
+button.back{
+    background-color: white;
+    border-color:blue;
+    width: 45%; 
+    
+}
+
+.am-pm {
+    padding-top: 4%;
+    padding-right: 34%;
+    padding-left: 33%;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 100%;
+    
+}
+
+.am-pm button{
+    width: 80%; 
+    
+    
+}
+
