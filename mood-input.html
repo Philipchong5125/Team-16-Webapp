@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    #return{
+        color: white;
+        text-decoration: none;
+    }
+    #save{
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+<head>
+    <meta charset="utf-8">
+    <title>Wiri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/reminder.css">
+
+
+
+    <!-- Bootstrap for Mobile-first, and JQuery -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="scripts/reminder.js"></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <button type="button" class="btn btn-secondary home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-house-door-fill"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main>
+        <div>
+            <h3>
+                How are you feeling today? (1 - 10)
+            </h3>
+            <h2>
+                I feel like a <input></input> today.
+            </h2>
+        </div>
+
+       
+        <div class="savecancel">
+            <button type="button" class="btn btn-primary cancel">
+                <a href = "set-input.html" id = "return">RETURN</a>
+            </button>
+            <button type="button" class="btn btn-primary save">
+                <a href="Tracker.html" id ="save">SAVE</a>
+            </button>
+        </div>
+    </main>

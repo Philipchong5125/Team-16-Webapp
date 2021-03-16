@@ -1,6 +1,35 @@
 <!DOCTYPE html>
 <html>
 
+<style>
+
+#z_button {
+  background-color: #4975d4;
+  height: 50px;
+  position: absolute;
+  outline: 0;
+  display: block;
+  margin: 250px 0px 0px 20px;
+  color: #fff;
+  border-radius: 100%;
+  width: 50px;
+}
+
+#z_button:hover {
+  cursor: default;
+}
+
+#z_plus {
+  text-align: center;
+  line-height: 50px;
+  font-size: 30px;
+}
+
+a:link{
+    text-decoration: none;
+}
+</style>
+
 <head>
     <meta charset="utf-8">
     <title>My BCIT Project</title>
@@ -24,7 +53,7 @@
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
     <!-- Header Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"> Wiri</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,19 +63,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="login.html" class="btn btn-warning"> login </a>
+                        <a href="login.html" class="btn btn-primary"> login </a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.html" class="btn btn-warning"> Home </a>
+                        <a href="login.html" class="btn btn-primary"> Home </a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.html" class="btn btn-warning"> Gudied Medition </a>
+                        <a href="login.html" class="btn btn-primary"> Guided Medition </a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.html" class="btn btn-warning"> Reminder </a>
+                        <a href="login.html" class="btn btn-primary"> Reminder </a>
                     </li>
                     <li class="nav-item">
-                        <a href="login.html" class="btn btn-warning"> Tracker </a>
+                        <a href="login.html" class="btn btn-primary"> Tracker </a>
                     </li>
                 </ul>
             </div>
@@ -58,19 +87,27 @@
         <div class="text-center py-3">
             <div class="container">
                 <div class="text-center py-3">
-                    <a href="login.html" class="btn btn-warning"> Gudied Medition </a>
+                    <a href="login.html" class="btn btn-primary"> Guided Medition </a>
                 </div>
 
                 <div class="text-center py-3">
-                    <a href="login.html" class="btn btn-warning"> Reminder </a>
+                    <a href="login.html" class="btn btn-primary"> Reminder </a>
 
                 </div>
                 <div class="text-center py-3">
-                    <a href="login.html" class="btn btn-warning"> Tracker </a>
+                    <a href="login.html" class="btn btn-primary"> Tracker </a>
                 </div>
+
+                <!-- Button -->
+                <div id="container">
+                    <a href="Tracker.html" id="z_button" tabindex="0" >
+                      <div id="z_plus">+</div>
+                    </a>
+                  </div>
+
             </div>
             <nav class="navbar fixed-bottom navbar-light bg-light">
-                <footer class="navbar justify-content-evenly bg-warning fixed-bottom">
+                <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
 
 
                     <div class="container py-3">
