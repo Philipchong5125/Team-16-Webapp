@@ -1,6 +1,14 @@
+body {
+    
+    background-color:35dae3;
+}
+
 h3 {
     padding-top: 3em;
     text-align: center;
+    margin:0;
+    width:100%;
+    
 }
 
 h2 {
@@ -57,11 +65,67 @@ div.switch {
     margin-top: 2em;
     display:grid;
     grid-template-columns: 33% 33% 33%;
-    justify-items: center;
-    width: 100%;
-    padding-left: 25%;
-    padding-right: 25%;  
+    width:100%;
+    padding-left: 9%; 
 }
+
+.number-scroll {
+    margin-top: 2em;
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    width:100%;
+    justify-items: center; 
+}
+
+.time {
+    
+    width:40%;
+    padding-left: 25%;
+    justify-self: center;
+    margin:0;
+      
+}
+.time-scroll {
+    
+    width:90%;
+    padding-left: 25%;
+    justify-self: center;
+    margin:0;
+      
+}
+
+.time-time {
+    width: 75%;
+    height: 75%;
+    font-size: 20pt;
+    font-weight: bold;
+    padding: 10%;
+    margin: 0;
+    border-color:cornflowerblue;
+    border-width: medium;
+    border-radius: 20%;
+    
+
+}
+
+.time-ampm {
+    width: 75%;
+    height: 75%;
+    font-size: 19pt;
+    font-weight: bold;
+    padding: 6%;
+    margin:0;
+    border-color:cornflowerblue;
+    border-width: medium;
+    border-radius: 20%;
+}
+
+
+p { 
+    text-align:left;
+    font-weight: bold;
+}
+
 
 button.number {
     width: 80%;
@@ -90,17 +154,51 @@ button.back{
     width: 80%;     
 }
 
-.sun {
-    justify-items: center;
-    display: grid;
-    width: 100%;
+.sun-container {
+    
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    width:100%;
+    padding-left: 9%;
+    
 }
 
-.sunday {
-    width: 13.5%;
+#sun {
+    width: 80%;
+   
+
 }
 
 button.days {
     width: 80%;
     margin-bottom: 25%;
 }
+
+button.days.selected {
+    background-color: rgb(61, 61, 228);
+    color: white;
+}
+
+button.days.unselected {
+    background-color: white;
+    color: #0d6efd;
+}
+
+button.days:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.red {
+    color: rgba(255, 0, 0, 0.76);
+}
+
+.gray {
+    color: rgba(65, 61, 61, 0.363);
+}
+
+.black{
+    color: black;
+}
+
+

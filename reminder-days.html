@@ -14,10 +14,79 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="scripts/firebase.js"></script>
     <script src="scripts/reminder.js"></script>
 </head>
 
 <body>
+
+    <script>
+        $(document).ready(function() {
+            let numbers = [];
+            let days = [];
+            getReminder("phil");
+            function getReminder(username) {
+                db.collection("reminders")
+                    .where("username", "==", username)
+                    .get()
+                    .then(function(reminders) {
+                        reminders.forEach(element => {
+                            console.log(element.data());
+                            const data = element.data(); 
+                            numbers = data.day; 
+                            days = convertDaysToArray(numbers);
+                            applyCSSForSelectedDays(days);
+                            console.log(days);
+                        });
+                    });
+            }
+
+            function applyCSSForSelectedDays(days) {
+                days.forEach(element => {
+                    console.log("inside applyCSSForSelectedDays");
+                    console.log(element);
+                    $("#"+element).addClass("selected");
+                    $("#"+element).removeClass("unselected");
+                    days.push($("#"+element).attr('id'));
+                    $("#"+element+"-c").addClass("red");
+                });
+            }
+
+            $(".days").click(function(){
+                if($(this).hasClass("selected")) {
+                    // means the day should be unselected
+                    $(this).removeClass("selected");
+                    $(this).addClass("unselected");
+                    console.log(days);
+                    remove(days, $(this).attr('id'));
+                    console.log(days);
+                    //
+                    $("#"+$(this).attr('id')+"-c").removeClass('red');
+
+                } else {
+                    // means the day should be selected
+                    $(this).removeClass("unselected");
+                    $(this).addClass("selected");
+                    console.log(days);
+                    days.push($(this).attr('id'));
+                    console.log(days);
+                    $("#"+$(this).attr('id')+"-c").addClass('red');
+                }
+                console.log(this);
+            });
+
+            document.getElementById("mon").onclick = function () {
+                console.log("here");
+                $("#m").addClass("red");
+            }
+        });
+            
+    </script>
+               
     <header>
         <div>
             <button type="button" class="btn btn-secondary home">
@@ -34,25 +103,39 @@
             <h3>
                 Please select your days.
             </h3>
-            <h2>
-                M.T.W.Th.F.Sat.Sun
+            <h2 class="gray">
+                <span id="mon-c">M</span>
+                <span>.</span>
+                <span id="tues-c">T</span>
+                <span>.</span>
+                <span id="wed-c">W</span>
+                <span>.</span>
+                <span id="thurs-c">Th</span>
+                <span>.</span>
+                <span id="fri-c">F</span>
+                <span>.</span>
+                <span id="sat-c">Sat</span>
+                <span>.</span>
+                <span id="sun-c">Sun</span>
             </h2>
         </div>
         
         <div class="number-pad">
-            <button type="button" class="btn btn-outline-primary days">Mon</button>
-            <button type="button" class="btn btn-outline-primary days">Tues</button>
-            <button type="button" class="btn btn-outline-primary days">Wed</button>
-            <button type="button" class="btn btn-outline-primary days">Thurs</button>
-            <button type="button" class="btn btn-outline-primary days">Fri</button>
-            <button type="button" class="btn btn-outline-primary days">Sat</button>
+            <button type="button" class="btn btn-outline-primary days" id="mon">Mon</button>
+            <button type="button" class="btn btn-outline-primary days" id="tues">Tues</button>
+            <button type="button" class="btn btn-outline-primary days" id="wed">Wed</button>
+            <button type="button" class="btn btn-outline-primary days" id="thurs">Thurs</button>
+            <button type="button" class="btn btn-outline-primary days" id="fri">Fri</button>
+            <button type="button" class="btn btn-outline-primary days" id="sat">Sat</button>
         </div>
 
-        <div class="sun">
-            <button type="button" class="btn btn-outline-primary sunday">Sun</button>
-        </div>
+        <div class="sun-container">
+            <br>
+            <button type="button" class="btn btn-outline-primary days" id="sun">Sun</button>
+        </div> 
         <div class="savecancel">
             <button type="button" class="btn btn-primary cancel">CANCEL</button>
             <button type="button" class="btn btn-primary save">SAVE</button>
         </div>
     </main>
+    </body>
