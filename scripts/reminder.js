@@ -1,18 +1,3 @@
-$(document).ready(function() {
-
-    console.log("hello");
-    $('#activateSwitch').on('click', function () {
-        console.log("clicked");
-        var value = $('#activateSwitch').is(':checked');
-        console.log(value);
-        if(value) {
-            $('#activateSwitchLabel').html("Deactivate");
-        } else {
-            $('#activateSwitchLabel').html("Activate");
-        }
-    });
-});
-
 function convertDaysToString(days) {
     var result = [];
     days.sort();
@@ -52,16 +37,16 @@ function convertDayShort(day) {
     return short;
 }
 
-function convertDaysToArray(days) {
+function convertNumbersToDays(days) {
     var result = [];
     days.sort();
     days.forEach(element => {
-        result.push(convertDay(element));
+        result.push(convertNumber(element));
     });
     return result;
 }
 
-function convertDay(day) {
+function convertNumber(day) {
     var short;
     switch(day) {
         case 0:
@@ -91,11 +76,59 @@ function convertDay(day) {
     return short;
 }
 
+function convertDaysToNumbers(days) {
+    var result = [];
+    days.sort();
+    days.forEach(element => {
+        result.push(convertDay(element));
+    });
+    return result;
+}
+
+function convertDay(day) {
+    var number;
+    switch(day) {
+        case "mon":
+            number = 0;
+            break;
+        case "tues":
+            number = 1;
+            break;
+        case "wed":
+            number = 2;
+            break;
+        case "thurs":
+            number = 3;
+            break;
+        case "fri":
+            number = 4;
+            break;
+        case "sat":
+            number = 5;
+            break;
+        case "sun":
+            number = 6;
+            break;
+        default:
+            number = -1;    
+    }
+    return number;
+}
+
 function remove(arr, element) {
     const index = arr.indexOf(element);
     if(index > -1) {
         arr.splice(index, 1);
     }
+}
+
+function convertHoursToArray(time) {
+    var result = [];
+    time.sort();
+    time.forEach(element => {
+        result.push(convertHours(element));
+    });
+    return result;
 }
 
 

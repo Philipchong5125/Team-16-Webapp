@@ -28,6 +28,7 @@
         $(document).ready(function() {
             let numbers = [];
             let days = [];
+            let id = 0;
             getReminder("phil");
             function getReminder(username) {
                 db.collection("reminders")
@@ -38,7 +39,8 @@
                             console.log(element.data());
                             const data = element.data(); 
                             numbers = data.day; 
-                            days = convertDaysToArray(numbers);
+                            id = element.id;
+                            days = convertNumbersToDays(numbers);
                             applyCSSForSelectedDays(days);
                             console.log(days);
                         });
@@ -46,12 +48,12 @@
             }
 
             function applyCSSForSelectedDays(days) {
+                console.log("inside applyCSSForSelectedDays: " + days);
                 days.forEach(element => {
                     console.log("inside applyCSSForSelectedDays");
                     console.log(element);
                     $("#"+element).addClass("selected");
                     $("#"+element).removeClass("unselected");
-                    days.push($("#"+element).attr('id'));
                     $("#"+element+"-c").addClass("red");
                 });
             }
@@ -83,13 +85,36 @@
                 console.log("here");
                 $("#m").addClass("red");
             }
+
+            document.getElementById("house").onclick = function () {
+                location.href = "Homepage.html";
+            }
+
+            document.getElementById("cancel-button").onclick = function () {
+                location.href = "reminder-home.html";
+            }
+
+            document.getElementById("save-button").onclick = function () {
+                const reminder = db.collection("reminders").doc(id);
+                console.log("new value: " + convertDaysToNumbers(days));
+                reminder.update({
+                    day: convertDaysToNumbers(days)
+                }).then(() => {
+                    console.log("Document successfully updated!");
+                    location.href = "reminder-home.html";
+                })
+                .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+            }
         });
             
     </script>
                
     <header>
         <div>
-            <button type="button" class="btn btn-secondary home">
+            <button type="button" id="house" class="btn btn-secondary home">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-house-door-fill"
                     viewBox="0 0 16 16">
                     <path
@@ -134,8 +159,8 @@
             <button type="button" class="btn btn-outline-primary days" id="sun">Sun</button>
         </div> 
         <div class="savecancel">
-            <button type="button" class="btn btn-primary cancel">CANCEL</button>
-            <button type="button" class="btn btn-primary save">SAVE</button>
+            <button type="button" id="cancel-button" class="btn btn-primary cancel">CANCEL</button>
+            <button type="button" id="save-button" class="btn btn-primary save">SAVE</button>
         </div>
     </main>
     </body>

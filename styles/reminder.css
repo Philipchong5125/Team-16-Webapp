@@ -69,16 +69,10 @@ div.switch {
     padding-left: 9%; 
 }
 
-.number-scroll {
-    margin-top: 2em;
-    display:grid;
-    grid-template-columns: 33% 33% 33%;
-    width:100%;
-    justify-items: center; 
-}
+/**** this is the CSS for reminer-home.html *****/
 
 .time {
-    
+    min-height: 38px;
     width:40%;
     padding-left: 25%;
     justify-self: center;
@@ -97,29 +91,14 @@ div.switch {
 .time-time {
     width: 75%;
     height: 75%;
-    font-size: 20pt;
+    font-size: 14pt;
     font-weight: bold;
     padding: 10%;
     margin: 0;
     border-color:cornflowerblue;
     border-width: medium;
     border-radius: 20%;
-    
-
 }
-
-.time-ampm {
-    width: 75%;
-    height: 75%;
-    font-size: 19pt;
-    font-weight: bold;
-    padding: 6%;
-    margin:0;
-    border-color:cornflowerblue;
-    border-width: medium;
-    border-radius: 20%;
-}
-
 
 p { 
     text-align:left;
@@ -139,7 +118,7 @@ button.back{
     
 }
 
-.am-pm {
+/* .am-pm {
     padding-top: 4%;
     padding-right: 34%;
     padding-left: 33%;
@@ -152,7 +131,9 @@ button.back{
 
 .am-pm button{
     width: 80%;     
-}
+} */
+
+/**** this is the CSS for reminer-day.html *****/
 
 .sun-container {
     
@@ -160,13 +141,10 @@ button.back{
     grid-template-columns: 33% 33% 33%;
     width:100%;
     padding-left: 9%;
-    
 }
 
 #sun {
     width: 80%;
-   
-
 }
 
 button.days {
@@ -199,6 +177,32 @@ button.days:hover {
 
 .black{
     color: black;
+}
+
+/**** this is the CSS for reminer-time.html *****/
+
+.number-scroll {
+    margin-top: 2em;
+    display:grid;
+    grid-template-columns: 33% 33% 33%;
+    width:100%;
+    justify-items: center; 
+}
+
+.number-scroll input {
+    border-color: #0d6efd;
+    text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 

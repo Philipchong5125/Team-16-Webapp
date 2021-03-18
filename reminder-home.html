@@ -26,7 +26,7 @@
     <script>
         $(document).ready(function () {
             var data = getReminder("phil");
-            
+            let id = 0;
             function getReminder(username) {
                 db.collection("reminders")
                     .where("username", "==", username)
@@ -35,8 +35,20 @@
                         reminders.forEach(element => {
                             console.log(element.data());
                             var data = element.data();
-                            $("#reminder-day").html(convertDaysToString(data.day));
-                            $("#reminder-time").html(data.time);
+                            id = element.id;
+                            // set days
+                            if (data.day && data.day.length > 0) {
+                                $("#reminder-day").html(convertDaysToString(data.day));
+                            } else {
+                                $("#reminder-day").html("Select Days");
+                            }
+                            // set time
+                            if (data.time.length > 0) {
+                                $("#reminder-time").html(data.time);
+                            } else {
+                                $("#reminder-time").html("Select Time");
+                            }
+                            // set activated
                             $("#activateSwitch").prop("checked", data.activated);
                         });
                     });
@@ -49,11 +61,44 @@
                 location.href = "reminder-time.html";
             }
 
+            document.getElementById("house").onclick = function () {
+                location.href = "Homepage.html";
+            }
+
+            document.getElementById("cancel-button").onclick = function () {
+                location.href = "Homepage.html";
+            }
+
+            document.getElementById("save-button").onclick = function () {
+                const reminder = db.collection("reminders").doc(id);
+                const activated = $("#activateSwitch").prop("checked");
+                console.log("new value: " + activated);
+                reminder.update({
+                    activated: activated
+                }).then(() => {
+                    console.log("Document successfully updated!");
+                    location.href = "Homepage.html";
+                })
+                .catch((error) => {
+                    // The document probably doesn't exist.
+                    console.error("Error updating document: ", error);
+                });
+            }
+
+            $('#activateSwitch').on('click', function () {
+                var value = $('#activateSwitch').is(':checked');
+                if(value) {
+                    $('#activateSwitchLabel').html("Deactivate");
+                } else {
+                    $('#activateSwitchLabel').html("Activate");
+                }
+            });
+
         });
     </script>
     <header>
         <div>
-            <button type="button" class="btn btn-secondary home">
+            <button type="button" id="house" class="btn btn-secondary home">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-house-door-fill"
                     viewBox="0 0 16 16">
                     <path
@@ -87,8 +132,8 @@
 
         </div>
         <div class="savecancel">
-            <button type="button" class="btn btn-primary cancel">CANCEL</button>
-            <button type="button" class="btn btn-primary save">SAVE</button>
+            <button type="button" id="cancel-button" class="btn btn-primary cancel">CANCEL</button>
+            <button type="button" id="save-button" class="btn btn-primary save">SAVE</button>
         </div>
     </main>
 
