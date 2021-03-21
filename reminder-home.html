@@ -25,32 +25,46 @@
 <body>
     <script>
         $(document).ready(function () {
-            var data = getReminder("phil");
-            let id = 0;
-            function getReminder(username) {
-                db.collection("reminders")
-                    .where("username", "==", username)
+            var data;
+            var email;
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    console.log("user has logged in ");
+                    email = user.email;
+                    data = getReminder(email);
+                    $("#hello-user").html("Hello " + user.displayName);
+                } else {
+                    // No user is signed in.
+                    console.log("user is not logged in");
+                    window.href = "login.html";
+                }
+            });
+            function getReminder(email) {
+                db.collection("reminders").doc(email)
                     .get()
-                    .then(function (reminders) {
-                        reminders.forEach(element => {
-                            console.log(element.data());
-                            var data = element.data();
-                            id = element.id;
+                    .then(function (reminder) {
+                        if (reminder.exists) {
+                            console.log(reminder.data());
+                            var data = reminder.data();
+                            console.log(data.days);
                             // set days
-                            if (data.day && data.day.length > 0) {
-                                $("#reminder-day").html(convertDaysToString(data.day));
-                            } else {
-                                $("#reminder-day").html("Select Days");
+                            if (data.days && data.days.length > 0) {
+                                $("#reminder-day").html(convertDaysToString(data.days));
                             }
                             // set time
                             if (data.time.length > 0) {
                                 $("#reminder-time").html(data.time);
-                            } else {
-                                $("#reminder-time").html("Select Time");
                             }
                             // set activated
-                            $("#activateSwitch").prop("checked", data.activated);
-                        });
+                            if (data.activated) {
+                                $("#activateSwitch").prop("checked", data.activated);
+                            }
+                        } else {
+                            db.collection("reminders").doc(email).set({}).then(() => {
+                                console.log("a new document was created for " + email);
+                            });
+                        }
                     });
             }
             document.getElementById("reminder-day").onclick = function () {
@@ -70,7 +84,7 @@
             }
 
             document.getElementById("save-button").onclick = function () {
-                const reminder = db.collection("reminders").doc(id);
+                const reminder = db.collection("reminders").doc(email);
                 const activated = $("#activateSwitch").prop("checked");
                 console.log("new value: " + activated);
                 reminder.update({
@@ -109,8 +123,7 @@
     </header>
     <main>
         <div>
-            <h3>
-                Hello UserName,
+            <h3 id="hello-user">
             </h3>
             <h4>
                 Please set your reminder
@@ -123,11 +136,13 @@
             </div>
             <div>
                 <button type="button" id="reminder-day" class="btn btn-outline-primary time">
-                    M.T.W.Th.F.Sat.Sun
+                    Select Days
                 </button>
             </div>
             <div>
-                <button type="button" id="reminder-time" class="btn btn-outline-primary time">6:00 AM</button>
+                <button type="button" id="reminder-time" class="btn btn-outline-primary time">
+                    Select Time
+                </button>
             </div>
 
         </div>
