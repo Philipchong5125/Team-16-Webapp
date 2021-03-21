@@ -39,10 +39,12 @@ function convertDayShort(day) {
 
 function convertNumbersToDays(days) {
     var result = [];
-    days.sort();
-    days.forEach(element => {
-        result.push(convertNumber(element));
-    });
+    if (days) {
+        days.sort();
+        days.forEach(element => {
+            result.push(convertNumber(element));
+        });
+    }
     return result;
 }
 

@@ -28,22 +28,34 @@
         $(document).ready(function() {
             let numbers = [];
             let days = [];
-            let id = 0;
-            getReminder("phil");
-            function getReminder(username) {
+            let email;
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    console.log("user has logged in ");
+                    email = user.email;
+                    getReminder(email);
+                } else {
+                    // No user is signed in.
+                    console.log("user is not logged in");
+                    window.href = "login.html";
+                }
+            });
+            function getReminder(email) {
                 db.collection("reminders")
-                    .where("username", "==", username)
+                    .doc(email)
                     .get()
-                    .then(function(reminders) {
-                        reminders.forEach(element => {
-                            console.log(element.data());
-                            const data = element.data(); 
-                            numbers = data.day; 
-                            id = element.id;
-                            days = convertNumbersToDays(numbers);
-                            applyCSSForSelectedDays(days);
-                            console.log(days);
-                        });
+                    .then(function(reminder) {
+                        if (reminder.exists) {
+                            console.log(reminder.data());
+                            const data = reminder.data();
+                            if (data) { 
+                                numbers = data.days; 
+                                days = convertNumbersToDays(numbers);
+                                applyCSSForSelectedDays(days);
+                                console.log(days);
+                            }
+                        }
                     });
             }
 
@@ -95,10 +107,10 @@
             }
 
             document.getElementById("save-button").onclick = function () {
-                const reminder = db.collection("reminders").doc(id);
+                const reminder = db.collection("reminders").doc(email);
                 console.log("new value: " + convertDaysToNumbers(days));
                 reminder.update({
-                    day: convertDaysToNumbers(days)
+                    days: convertDaysToNumbers(days)
                 }).then(() => {
                     console.log("Document successfully updated!");
                     location.href = "reminder-home.html";

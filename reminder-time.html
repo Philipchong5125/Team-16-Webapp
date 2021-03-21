@@ -25,26 +25,40 @@
 <body>
     <script>
         $(document).ready(function () {
-            let id = 0;
-            getReminder("phil");
-            function getReminder(username) {
-                db.collection("reminders")
-                    .where("username", "==", username)
+            let email;
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    console.log("user has logged in ");
+                    email = user.email;
+                    getReminder(email);
+                } else {
+                    // No user is signed in.
+                    console.log("user is not logged in");
+                    window.href = "login.html";
+                }
+            });
+            function getReminder(email) {
+                db.collection("reminders").doc(email)
                     .get()
-                    .then(function(reminders) {
-                        reminders.forEach(element => {
-                            console.log(element.id);
-                            console.log(element.data());
-                            id = element.id;
-                            const data = element.data(); 
+                    .then(function(reminder) {
+                        console.log(reminder.data());
+                        const data = reminder.data(); 
+                        if (data) {
                             const time = data.time;
                             console.log(time);
-                            const arr = time.split(/[\s:]+/);
-                            console.log(arr);
-                            $("#hour").val(arr[0]);
-                            $("#minute").val(arr[1]);
-                            $("#day-night").val(arr[2]);
-                        });
+                            if (time) {
+                                const arr = time.split(/[\s:]+/);
+                                console.log(arr);
+                                $("#hour").val(arr[0]);
+                                $("#minute").val(arr[1]);
+                                $("#day-night").val(arr[2]);
+                            } else {
+                                $("#hour").val(00);
+                                $("#minute").val(00);
+                                $("#day-night").val("AM");
+                            }
+                        }
                     });
             }
 
@@ -57,7 +71,7 @@
             }
 
             document.getElementById("save-button").onclick = function () {
-                const reminder = db.collection("reminders").doc(id);
+                const reminder = db.collection("reminders").doc(email);
                 let newValue = "";
                 if ($("#hour").val() && $("#minute").val() && $("#day-night").val()) {
                     newValue = $("#hour").val() + ":" + $("#minute").val() + " " + $("#day-night").val();
