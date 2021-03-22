@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <head>
     <style>
         .container{
@@ -8,7 +12,7 @@
         }
         #chartdiv{
             width: 100%;
-            height: 500px;
+            height: 300px;
         }
     </style>
     <meta charset="utf-8">
@@ -76,12 +80,13 @@
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
-    <nav class="navbar fixed-bottom navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">WiRi: your meditation buddy!</a>
-            
+    <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
+        <div class="container py-3">
+            <a href="reminder-home.html" class="btn btn-primary"> Reminder<br> <i class="material-icons">&#xe003;</i></a>
+            <a href="Tracker.html" class="btn btn-primary"> Tracker<br> <i style="font-size:24px" class="fa">&#xf1fe;</i></a>
+            <a href="set-input.html" class="btn btn-primary"> Daily Input<br><i style="font-size:24px" class="fa">&#xf196;</i></a>
         </div>
-    </nav>
+    </footer>
 
     <script>
         am4core.ready(function() {
