@@ -1,32 +1,14 @@
 <!DOCTYPE html>
 <html>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style>
-    #z_button {
-        background-color: #4975d4;
-        height: 50px;
-        position: absolute;
-        outline: 0;
-        display: block;
-        margin: 250px 0px 0px 20px;
-        color: #fff;
-        border-radius: 100%;
-        width: 50px;
+    .container{
+        padding-top: 5em;
     }
-
-    #z_button:hover {
-        cursor: default;
-    }
-
-    #z_plus {
-        text-align: center;
-        line-height: 50px;
-        font-size: 30px;
-    }
-
-    a:link {
-        text-decoration: none;
-    }
+   
 </style>
 
 <head>
@@ -79,31 +61,25 @@
             </div>
         </div>
     </nav>
+    <div id = "main">
+      
 
     <div class="container">
         <h1 class="display-4"></h1>
         <div class="text-center py-3">
             <div class="container">
-                <div class="text-center py-3">
-                    <a href="guidedmeditation.html" class="btn btn-primary"> Guided Medition </a>
-                </div>
-
-                <div class="text-center py-3">
-                    <a href="reminder-home.html" class="btn btn-primary"> Reminder </a>
-                </div>
-
-                <a href="Tracker.html" class="btn btn-primary"> Tracker </a>
             </div>
-            <!-- Button -->
+        </div>
+        
 
             <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
                 <div class="container py-3">
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <a href="set-input.html" class="btn btn-light"> Tracker Input</a>
+                    <a href="reminder-home.html" class="btn btn-primary"> Reminder<br> <i class="material-icons">&#xe003;</i></a>
+                    <a href="Tracker.html" class="btn btn-primary"> Tracker<br> <i style="font-size:24px" class="fa">&#xf1fe;</i></a>
+                    <a href="set-input.html" class="btn btn-primary"> Daily Input<br><i style="font-size:24px" class="fa">&#xf196;</i></a>
                 </div>
             </footer>
+        
             </nav>
             <!----------------------------------------------->
             <!-- JS: Boostrap, Firebase, API related    -->
@@ -117,5 +93,6 @@
             <!-- JS files: Your own JavaScript functions included here    -->
             <!--------------------------------------------------------------------->
 </body>
+
 
 </html>
