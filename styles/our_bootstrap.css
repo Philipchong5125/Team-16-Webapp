@@ -1,5 +1,5 @@
 body {
-  background-color:#E7DFC6;
+  background-color:#F7F5FB;
 }
 
 .navbar-brand {
@@ -9,4 +9,32 @@ body {
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  background-color: #86A5D9 !important;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #86A5D9 !important;
+  color: #F7F5FB !important;
+  border-color: #86A5D9 !important;
+
+}
+
+.btn-light, .btn-light:hover, .btn-light:active, .btn-light:visited {
+  background-color: #F7F5FB !important;
+  color: #1E1E24 !important;
+  border-color: #F7F5FB !important;
+  text-align: left;
+  text-align: justify;
+}
+
+.navbar{
+  background-color:#86A5D9 !important;
 }
