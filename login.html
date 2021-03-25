@@ -41,9 +41,11 @@
 
     <div class="container">
         <h1 class="display-4"> Welcome!</h1>
-          <h1> <p> let's login  </p> <h1>
-        <div id="firebaseui-auth-container"></div>
-        <div id="loader">Loading...</div>
+        <h1>
+            <p> let's login </p>
+            <h1>
+                <div id="firebaseui-auth-container"></div>
+                <div id="loader">Loading...</div>
     </div>
 
     <!----------------------------------------------->
@@ -102,7 +104,7 @@
                 // firebase.auth.GithubAuthProvider.PROVIDER_ID,
                 firebase.auth.EmailAuthProvider.PROVIDER_ID,
                 // firebase.auth.PhoneAuthProvider.PROVIDER_ID
-            
+
             ],
             // Terms of service url.
             tosUrl: '<your-tos-url>',
@@ -111,7 +113,6 @@
         };
         // The start method will wait until the DOM is loaded.
         ui.start('#firebaseui-auth-container', uiConfig);
-
     </script>
 
 
