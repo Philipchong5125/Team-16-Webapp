@@ -1,7 +1,12 @@
+<!DOCTYPE html>
+<html>
 
-<!doctype html>
-<html lang="en">
-  <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="styles/homepage.css">
+<link rel="stylesheet" href="styles/timerfunction.css">
+
+<head>
     <meta charset="utf-8">
     <title>My BCIT Project</title>
     <meta name="comp1800 boilerplate code" content="my bcit project">
@@ -19,10 +24,7 @@
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./styles/our_bootstrap.css">
-
-
-    <!-- Optional styles and scripts of your own -->
-
+    <script src="scripts/timer.js"></script>
 
 </head>
 
@@ -62,11 +64,25 @@
         </div>
     </nav>
 
+    <div class="main">
+        <h1 class="display-4"></h1>
+        <div class="text-center py-3">
+            <div class="container">
+                <h1>Breathing Meditation</h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="header">
+        <img id="background" src="media/watercolor.png">
+    </div>
+
+    <div class="main">
     <div class="container">
         <h1 class="display-4"></h1>
         <div class="text-center py-3">
             <div class="container">
-                <h2>Breathing Meditation</h2>
+            
 
                 <div class="timer">
                     <div id="display">
@@ -77,11 +93,16 @@
                     </div>
                 </div>
 
+                <h2>Take the time to breathe deep</h2>
+
                 <div class="text-center py-3">
                     <a href="Homepage.html" class="btn btn-primary"> Guided Medition </a>
                 </div>
 
             </div>
+            </div>
+            </div>
+
 
             <!----------------------------------------------->
             <!-- JS: Boostrap, Firebase, API related    -->
