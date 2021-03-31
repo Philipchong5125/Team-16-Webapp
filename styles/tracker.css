@@ -1,6 +1,6 @@
 body {
     
-    background-color: #F7F5FB;
+    background-color: #F7F5FB !important;
 }
 
 h3 {
@@ -20,21 +20,6 @@ h4 {
     padding-top: 1em;
     text-align: center;
     padding-bottom: 2.5em;
-}
-
-button.home{
-    float: right;
-    background-color: white;
-    border-color: white;
-    padding-right: 1em;
-}
-
-button.time {
-    display: block;
-    font-weight: bold;
-    margin: 3em auto 2em auto;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 
 .savecancel {
