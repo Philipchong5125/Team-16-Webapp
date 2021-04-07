@@ -13,3 +13,9 @@
 .buttons {
     text-align:center;
 }
+html,
+body {
+    height: 140%;
+    
+}
+

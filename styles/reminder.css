@@ -1,6 +1,6 @@
 body {
     
-    background-color:35dae3;
+    background-color:35dae3; 
 }
 
 h3 {
@@ -71,6 +71,10 @@ div.switch {
 
 /**** this is the CSS for reminer-home.html *****/
 
+body {
+    height: 145%;
+}
+
 .time {
     min-height: 38px;
     width:40%;
@@ -117,6 +121,7 @@ button.back{
     width: 45%; 
     
 }
+
 
 /* .am-pm {
     padding-top: 4%;
