@@ -112,12 +112,16 @@ function getCurrent24HourTime() {
         hours = 12;
     }
     const minutes = toDate.getMinutes();
+    let minutesStr = minutes;
+    if (minutes < 10) {
+        minutesStr = "0" + minutesStr;
+    }
     let ampm = "AM";
     if (toDate.getHours() >= 12) {
         ampm = "PM";
     }
 
-    return hours + ":" + minutes + " " + ampm;
+    return hours + ":" + minutesStr + " " + ampm;
 }
 
 // Create and Deploy Your First Cloud Functions
