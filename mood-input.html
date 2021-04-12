@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <style>
     #return,
     #save {
@@ -22,15 +21,24 @@
         href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="./styles/our_bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
 
 
 
     <!-- Bootstrap for Mobile-first, and JQuery -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="scripts/reminder.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <script src="scripts/firebase.js"></script>
+
+
 </head>
 
 <body>
@@ -38,28 +46,6 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"> WiRi</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggler navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-
-                    <li class="nav-item">
-                        <a href="Homepage.html" class="btn btn-primary"> Home </a>
-                    </li>
-                    <li class="nav-item">
-
-                        <a class="nav-link active" aria-current="page" href="Homepage.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="reminder-home.html">Set Reminder</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Tracker.html">Tracker</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
 
@@ -70,17 +56,53 @@
                 How are you feeling today? (1 - 10)
             </h3>
             <h2>
-                I feel like a <input></input> today.
+                I feel like a <input type="number" placeholder="10" id="mood"></input> today.
             </h2>
         </div>
 
-
         <div class="savecancel">
-            <button type="button" class="btn btn-primary cancel">
+            <button href="set-input.html" type="button" class="btn btn-primary cancel">
                 <a href="set-input.html" id="return">RETURN</a>
             </button>
             <button type="button" class="btn btn-primary save">
-                <a href="Tracker.html" id="save">SAVE</a>
+                <a onclick="writeData()" id="save">SAVE</a>
             </button>
         </div>
-    </main>
+
+        <script>
+
+            $(document).ready(function () {
+                var data;
+                var email;
+                firebase.auth().onAuthStateChanged(function (user) {
+                    if (user) {
+                        // User is signed in.
+                        console.log("user has logged in ");
+                        email = user.email;
+                        $("#hello-user").html("Hello " + user.displayName);
+                    } else {
+                        // No user is signed in.
+                        console.log("user is not logged in");
+                        window.href = "login.html";
+                    }
+
+                    function writeData() {
+                    db.collection("tracker").doc(email).set({
+                            mood: getElementById("mood")
+                        })
+                        .then(() => {
+                            console.log("document written successfully.");
+                        })
+                        .catch((error) => {
+                            console.error("error writing document" + error)
+                        });
+
+                }
+
+                });
+
+            })
+        </script>
+</body>
+
+</main>
