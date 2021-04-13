@@ -96,8 +96,8 @@
 
             <div>
                 <h2>
-                    I feel like a <input type="number" placeholder="1-10" id="mood"
-                        onInput= "writeData()" required></input> today.
+                    I feel like a <input type="number" placeholder="1-10" id="mood" onInput="writeData()"
+                        required></input> today.
                 </h2>
             </div>
 
@@ -121,6 +121,7 @@
 
         <script>
             $(document).ready(function () {
+
                 var data;
                 var email;
                 var date = new Date();
@@ -142,16 +143,30 @@
             })
 
             function writeData() {
-                firebase.auth().onAuthStateChanged(function(user){
-                    if(user){
+                firebase.auth().onAuthStateChanged(function (user) {
+                    const tracker = db.collection("tracker").doc(email);
+                    if (user) {
                         var email = user.email;
                     }
-                    db.collection("tracker").doc(email).set({
-                    date: new Date(),
-                    mood: document.getElementById('mood').value,
-                    time: document.getElementById('time').value
-                });
-                console.log("written");
+                    if (tracker.exists == true) {
+                        db.collection("tracker").doc(email).add({
+                            date: new Date(),
+                            mood: document.getElementById('mood').value,
+                            time: document.getElementById('time').value
+                        });
+                        console.log("written")
+
+                    } else{
+                        db.collection("tracker").doc(email).set({
+                        date: new Date(),
+                        mood: document.getElementById('mood').value,
+                        time: document.getElementById('time').value
+                    });
+                    console.log("set");
+                        
+                    }
+                    
+
                 });
             }
 

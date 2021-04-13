@@ -19,9 +19,9 @@
             height: 300px;
         }
 
-        body{
+        body {
             height: 100% !important;
-            background-color:  #86A5D9 !important;
+            background-color: #86A5D9 !important;
         }
     </style>
     <meta charset="utf-8">
@@ -46,9 +46,9 @@
     <link rel="stylesheet" href="./styles/homepage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.9/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
     <script src="scripts/firebase.js"></script>
 
@@ -78,16 +78,14 @@
     </nav>
 
     <div class="container">
-        <h1 id="hello-user">
-        </h1>
         <h1 class="display-4">WiRi Tracker </h1>
-        <h3 id="hello-user"></h3>
         <p>Your Progress:</p>
         <p>Y-axis marks the amount of time you've spent meditating. X-axis marks the date in which you did the
             meditation:</p>
     </div>
 
     <canvas id="myChart" width="400" height="200"></canvas>
+    <p id="data"></p>
 
     <script>
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -95,40 +93,41 @@
 
             type: 'line',
             data: {
-                labels: [1, 2],
+                labels: [1,2],
                 datasets: [{
-                    label: '(Time Spent)',
-                    data: [12, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)'
-                        //'rgba(54, 162, 235, 0.2)',
-                        //'rgba(255, 206, 86, 0.2)',
-                        //'rgba(75, 192, 192, 0.2)',
-                        //'rgba(153, 102, 255, 0.2)',
-                        //'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)'
-                        //'rgba(54, 162, 235, 1)',
-                        //'rgba(255, 206, 86, 1)',
-                        //'rgba(75, 192, 192, 1)',
-                        //'rgba(153, 102, 255, 1)',
-                        //'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                },
-            {
-                label: '(mood)',
-                data: [5,6],
-                backgroundColor: [
-                'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                'rgba(54, 162, 235, 1)'
-            ],
-            borderWidth: 1
+                        label: 'Time Spent',
+                        data: [12, 3],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)'
+                            //'rgba(54, 162, 235, 0.2)',
+                            //'rgba(255, 206, 86, 0.2)',
+                            //'rgba(75, 192, 192, 0.2)',
+                            //'rgba(153, 102, 255, 0.2)',
+                            //'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)'
+                            //'rgba(54, 162, 235, 1)',
+                            //'rgba(255, 206, 86, 1)',
+                            //'rgba(75, 192, 192, 1)',
+                            //'rgba(153, 102, 255, 1)',
+                            //'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'mood',
+                        data: [5, 6],
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(54, 162, 235, 1)'
+                        ],
+                        borderWidth: 1
 
-            }]
+                    }
+                ]
             },
             options: {
                 scales: {
@@ -139,7 +138,7 @@
             }
         });
     </script>
-   
+
     <!----------------------------------------------->
     <!-- JS: Boostrap, Firebase, API related    -->
     <!----------------------------------------------->
@@ -166,7 +165,61 @@
     </footer>
 
     <script>
-       
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                // User is signed in.
+                console.log("user has logged in ");
+                email = user.email;
+                $("#hello-user").html("Hello " + user.displayName);
+
+            } else {
+                // No user is signed in.
+                console.log("user is not logged in");
+                window.href = "login.html";
+            }
+        });
+
+        function getData() {
+            firebase.auth().onAuthStateChanged(function (user) {
+                var email = user.email;
+                db.collection("tracker").ref(email).once('value', function (snapshot) {
+                    snapshot.forEach(function (childSnapshot) {
+                        var childKey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        document.getElementById('data').innerHTML = childData[
+                            'time'] + ", " + childData['mood'] + childData['date'];
+                    })
+                })
+
+            });
+        }
+        // Create a reference to the tracker collection
+        var reference = db.collection("tracker");
+
+        // Create a query against the collection.
+        var datequery = reference.where("date", "!=", true);
+        var timequery = reference.where("time", "!=", true);
+        var moodquery = reference.where("mood", "!=", true);
+        console.log(datequery);
+        console.log(timequery);
+        console.log(moodquery);
+
+        const getTracker = (id) =>{
+            let tracker = [];
+            const snapshot = firestore.collection('tracker')
+            .doc(id)
+            .collection(email)
+            .get()
+            .then((snapshot)=>{
+                snapshot.forEach((doc) => tracker.push(doc));
+                resolve(tracker);
+            })
+            .catch(error =>{
+                reject(error);
+            });
+        }
+
+        console.log(getTracker)
     </script>
 </body>
 
