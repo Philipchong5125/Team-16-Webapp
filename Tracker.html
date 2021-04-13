@@ -101,7 +101,7 @@
                     class="fa">&#xf196;</i></a>
         </div>
     </footer>
-    
+
     <script>
         firebase.auth().onAuthStateChanged(function (user) {
             var email = user.email;
@@ -194,54 +194,7 @@
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
 
-    <script>
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in.
-                console.log("user has logged in ");
-                email = user.email;
-                $("#hello-user").html("Hello " + user.displayName);
-
-            } else {
-                // No user is signed in.
-                console.log("user is not logged in");
-                window.href = "login.html";
-            }
-
-
-
-            //Get Data.
-            var docRef = db.collection("tracker").doc(email).collection("tracker instance").doc(
-                "2cK76ED5bxJjXq1RcOOw");
-            docRef.get().then((doc) => {
-                if (doc.exists) {
-                    console.log("Document data:", doc.data());
-                } else {
-                    console.log("No such document!");
-                }
-            }).catch((error) => {
-                console.log("Error getting document: ", error);
-
-            });
-
-        });
-        const getTracker = (id) => {
-            let tracker = [];
-            const snapshot = firestore.collection('tracker').doc(email)
-                .doc(id)
-                .collection(email)
-                .get()
-                .then((snapshot) => {
-                    snapshot.forEach((doc) => tracker.push(doc));
-                    resolve(tracker);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        }
-        console.log(getTracker)
-
-    </script>
+   
 </body>
 
 </html>
