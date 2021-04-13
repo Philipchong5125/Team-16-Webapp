@@ -1,6 +1,10 @@
-body {
+html {
+    background-color: #F7F5FB;
+}
+
+main {
     
-    background-color:35dae3; 
+    background-color: #F7F5FB
 }
 
 h3 {
@@ -40,17 +44,19 @@ button.time {
 .savecancel {
     padding-left: 1em;
     padding-right: 1em;
-    padding-top: 5em;;
+    padding-top: 5em;
 }
 
 button.cancel {
     float: left;
     width: 100px;
+    background-color:#86A5D9;
 }
 
 button.save {
     float: right;
     width: 100px;
+    background-color:#86A5D9;
 }
 
 div.switch {
