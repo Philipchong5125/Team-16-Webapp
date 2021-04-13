@@ -80,7 +80,7 @@
     <div class="container">
         <h1 class="display-4">WiRi Tracker </h1>
         <p>Your Progress:</p>
-        <p>Y-axis marks the amount of time you've spent meditating. X-axis marks the date in which you did the
+        <p>Y-axis marks the amount of time you've spent meditating. X-axis marks the days in which you did the
             meditation:</p>
     </div>
 
@@ -93,7 +93,7 @@
 
             type: 'line',
             data: {
-                labels: [1,2],
+                labels: [1, 2, 3, 4, 5, 6, 7],
                 datasets: [{
                         label: 'Time Spent',
                         data: [12, 3],
@@ -177,48 +177,47 @@
                 console.log("user is not logged in");
                 window.href = "login.html";
             }
+
+
+
+            //Get Data.
+            var docRef = db.collection("tracker").doc(email).collection("tracker instance").doc(
+                "2cK76ED5bxJjXq1RcOOw");
+            docRef.get().then((doc) => {
+                if (doc.exists) {
+                    console.log("Document data:", doc.data());
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch((error) => {
+                console.log("Error getting document: ", error);
+
+            });
+
+            const data = db.collection("tracker").doc(email).collection('tracker instance').doc();
+            var datequery = data.where("date", "!=", true);
+            var timequery = data.where("time", "<", 0);
+            var moodquery = data.where("mood", "<", 0);
+
+            console.log(datequery);
+            console.log(timequery);
+            console.log(moodquery);
+
         });
-
-        function getData() {
-            firebase.auth().onAuthStateChanged(function (user) {
-                var email = user.email;
-                db.collection("tracker").ref(email).once('value', function (snapshot) {
-                    snapshot.forEach(function (childSnapshot) {
-                        var childKey = childSnapshot.key;
-                        var childData = childSnapshot.val();
-                        document.getElementById('data').innerHTML = childData[
-                            'time'] + ", " + childData['mood'] + childData['date'];
-                    })
-                })
-
-            });
-        }
-        // Create a reference to the tracker collection
-        var reference = db.collection("tracker");
-
-        // Create a query against the collection.
-        var datequery = reference.where("date", "!=", true);
-        var timequery = reference.where("time", "!=", true);
-        var moodquery = reference.where("mood", "!=", true);
-        console.log(datequery);
-        console.log(timequery);
-        console.log(moodquery);
-
-        const getTracker = (id) =>{
+        const getTracker = (id) => {
             let tracker = [];
-            const snapshot = firestore.collection('tracker')
-            .doc(id)
-            .collection(email)
-            .get()
-            .then((snapshot)=>{
-                snapshot.forEach((doc) => tracker.push(doc));
-                resolve(tracker);
-            })
-            .catch(error =>{
-                reject(error);
-            });
+            const snapshot = firestore.collection('tracker').doc(email)
+                .doc(id)
+                .collection(email)
+                .get()
+                .then((snapshot) => {
+                    snapshot.forEach((doc) => tracker.push(doc));
+                    resolve(tracker);
+                })
+                .catch(error => {
+                    reject(error);
+                });
         }
-
         console.log(getTracker)
     </script>
 </body>
