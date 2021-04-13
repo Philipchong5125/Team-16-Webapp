@@ -30,7 +30,6 @@
 
 <body>
   
-
     <!-------------------------------------->
     <!-- The following is HTML for layout -->
     <!-------------------------------------->
@@ -80,14 +79,17 @@
                 <p>Press start to begin the timer.</p>
 
                 <div class="timer">
+                    <audio id="audio">
+                        <source src="Audio/João Gilberto - É Preciso Perdoar.mp3" type="audio/mpeg"/>
+                    </audio>
                     <div id="display">
                       00:00:00
                     </div>
                     <div class="buttons">
-                        <button id="startStop" onclick="startStop()">Start</button><button id="reset" onclick="reset()">Reset</button>
+                       <button id="startStop" onclick="startStop()">Start</button><button id="reset" onclick="reset()">Reset</button>
                     </div>
                 </div>
-
+ 
                 <h3>Remember to add in your meditation time!</h3>
 
                 <div class="text-center py-3">

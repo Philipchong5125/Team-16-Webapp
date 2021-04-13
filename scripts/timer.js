@@ -65,13 +65,13 @@ function startStop(){
         //Start the stopwatch (by calling the setInterval() function)
         interval = window.setInterval(stopWatch, 1000);
         document.getElementById("startStop").innerHTML = "Stop";
+        document.getElementById("audio").play();
         status = "started";
-
     }
     else{
-
         window.clearInterval(interval);
         document.getElementById("startStop").innerHTML = "Start";
+        document.getElementById("audio").pause();
         status = "stopped";
     }
 }
