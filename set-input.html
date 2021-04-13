@@ -143,29 +143,19 @@
             })
 
             function writeData() {
+
                 firebase.auth().onAuthStateChanged(function (user) {
                     const tracker = db.collection("tracker").doc(email);
                     if (user) {
                         var email = user.email;
                     }
-                    if (tracker.exists) {
-                        db.collection("tracker").doc(email).add({
+
+                        db.collection("tracker").doc(email).collection('tracker instance').add({
                             date: new Date(),
                             mood: document.getElementById('mood').value,
                             time: document.getElementById('time').value
                         });
-                        console.log("written")
-
-                    } else{
-
-                        db.collection("tracker").doc(email).collection('tracker instance').add({
-                        date: new Date(),
-                        mood: document.getElementById('mood').value,
-                        time: document.getElementById('time').value
-                    });
-                    console.log("set");
-                        
-                    }
+                        console.log("set");
 
                 });
             }

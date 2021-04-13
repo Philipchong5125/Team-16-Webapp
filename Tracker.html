@@ -87,7 +87,51 @@
     <canvas id="myChart" width="400" height="200"></canvas>
     <p id="data"></p>
 
+    <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
+        <div class="container py-3">
+
+            <a href="homepage.html" class="btn btn-primary"> Guided Medition<br><i class="material-icons">&#xe3ac;</i>
+            </a>
+
+            <a href="reminder-home.html" class="btn btn-primary"> Reminder<br> <i
+                    class="material-icons">&#xe003;</i></a>
+            <a href="Tracker.html" class="btn btn-primary"> Tracker<br> <i style="font-size:24px"
+                    class="fa">&#xf1fe;</i></a>
+            <a href="set-input.html" class="btn btn-primary"> Daily Input<br><i style="font-size:24px"
+                    class="fa">&#xf196;</i></a>
+        </div>
+    </footer>
+    
     <script>
+        firebase.auth().onAuthStateChanged(function (user) {
+            var email = user.email;
+            const data = db.collection("tracker").doc(email).collection('tracker instance');
+            
+            data.where("time", "!=", 0)
+            .get()
+            .then((querySnapshot) =>{
+                querySnapshot.forEach((doc) =>{
+                    console.log(doc.id, "=>", doc.data());
+                });
+            })
+
+            data.where("mood", "!=", 0)
+            .get()
+            .then((querySnapshot) =>{
+                querySnapshot.forEach((doc) =>{
+                    console.log(doc.id, "=>", doc.data());
+                });
+            })
+
+            data.where("date", "!=", 0)
+            .get()
+            .then((querySnapshot) =>{
+                querySnapshot.forEach((doc) =>{
+                    console.log(doc.id, "=>", doc.data());
+                });
+            })
+        });
+
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
 
@@ -96,7 +140,7 @@
                 labels: [1, 2, 3, 4, 5, 6, 7],
                 datasets: [{
                         label: 'Time Spent',
-                        data: [12, 3],
+                        data: [12, 2],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)'
                             //'rgba(54, 162, 235, 0.2)',
@@ -149,20 +193,6 @@
     <!--------------------------------------------------------------------->
     <!-- JS files: Your own JavaScript functions included here    -->
     <!--------------------------------------------------------------------->
-    <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
-        <div class="container py-3">
-
-            <a href="homepage.html" class="btn btn-primary"> Guided Medition<br><i class="material-icons">&#xe3ac;</i>
-            </a>
-
-            <a href="reminder-home.html" class="btn btn-primary"> Reminder<br> <i
-                    class="material-icons">&#xe003;</i></a>
-            <a href="Tracker.html" class="btn btn-primary"> Tracker<br> <i style="font-size:24px"
-                    class="fa">&#xf1fe;</i></a>
-            <a href="set-input.html" class="btn btn-primary"> Daily Input<br><i style="font-size:24px"
-                    class="fa">&#xf196;</i></a>
-        </div>
-    </footer>
 
     <script>
         firebase.auth().onAuthStateChanged(function (user) {
@@ -194,15 +224,6 @@
 
             });
 
-            const data = db.collection("tracker").doc(email).collection('tracker instance').doc();
-            var datequery = data.where("date", "!=", true);
-            var timequery = data.where("time", "<", 0);
-            var moodquery = data.where("mood", "<", 0);
-
-            console.log(datequery);
-            console.log(timequery);
-            console.log(moodquery);
-
         });
         const getTracker = (id) => {
             let tracker = [];
@@ -219,6 +240,7 @@
                 });
         }
         console.log(getTracker)
+
     </script>
 </body>
 
