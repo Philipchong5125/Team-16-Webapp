@@ -10,9 +10,9 @@ main {
 h3 {
     padding-top: 3em;
     text-align: center;
-    margin:0;
-    width:100%;
-    
+    margin: 0;
+    width: 100%;
+
 }
 
 h2 {
@@ -26,7 +26,7 @@ h4 {
     padding-bottom: 2.5em;
 }
 
-button.home{
+button.home {
     float: right;
     background-color: white;
     border-color: white;
@@ -50,29 +50,29 @@ button.time {
 button.cancel {
     float: left;
     width: 100px;
-    background-color:#86A5D9;
+    background-color: #86A5D9;
 }
 
 button.save {
     float: right;
     width: 100px;
-    background-color:#86A5D9;
+    background-color: #86A5D9;
 }
 
 div.switch {
-    display:block;
+    display: block;
     width: 100px;
     margin: 3em auto 2em auto;
     font-weight: bold;
-    color:blue;
+    color: blue;
 }
 
 .number-pad {
     margin-top: 2em;
-    display:grid;
+    display: grid;
     grid-template-columns: 33% 33% 33%;
-    width:100%;
-    padding-left: 9%; 
+    width: 100%;
+    padding-left: 9%;
 }
 
 /**** this is the CSS for reminer-home.html *****/
@@ -83,19 +83,20 @@ body {
 
 .time {
     min-height: 38px;
-    width:40%;
+    width: 40%;
     padding-left: 25%;
     justify-self: center;
-    margin:0;
-      
+    margin: 0;
+
 }
+
 .time-scroll {
-    
-    width:90%;
+
+    width: 90%;
     padding-left: 25%;
     justify-self: center;
-    margin:0;
-      
+    margin: 0;
+
 }
 
 .time-time {
@@ -105,13 +106,13 @@ body {
     font-weight: bold;
     padding: 10%;
     margin: 0;
-    border-color:cornflowerblue;
+    border-color: cornflowerblue;
     border-width: medium;
     border-radius: 20%;
 }
 
-p { 
-    text-align:left;
+p {
+    text-align: left;
     font-weight: bold;
 }
 
@@ -121,36 +122,20 @@ button.number {
     margin-bottom: 6%;
 }
 
-button.back{
+button.back {
     background-color: white;
-    border-color:blue;
-    width: 45%; 
-    
+    border-color: blue;
+    width: 45%;
+
 }
-
-
-/* .am-pm {
-    padding-top: 4%;
-    padding-right: 34%;
-    padding-left: 33%;
-    justify-items: center;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    width: 100%;
-    
-}
-
-.am-pm button{
-    width: 80%;     
-} */
 
 /**** this is the CSS for reminer-day.html *****/
 
 .sun-container {
-    
-    display:grid;
+
+    display: grid;
     grid-template-columns: 33% 33% 33%;
-    width:100%;
+    width: 100%;
     padding-left: 9%;
 }
 
@@ -186,18 +171,18 @@ button.days:hover {
     color: rgba(65, 61, 61, 0.363);
 }
 
-.black{
+.black {
     color: black;
 }
 
-/**** this is the CSS for reminer-time.html *****/
+/**** this is the CSS for reminder-time.html *****/
 
 .number-scroll {
     margin-top: 2em;
-    display:grid;
+    display: grid;
     grid-template-columns: 33% 33% 33%;
-    width:100%;
-    justify-items: center; 
+    width: 100%;
+    justify-items: center;
 }
 
 .number-scroll input {
@@ -207,13 +192,11 @@ button.days:hover {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
-
-

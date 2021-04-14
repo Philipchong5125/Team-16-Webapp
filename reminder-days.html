@@ -25,11 +25,11 @@
 <body>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let numbers = [];
             let days = [];
             let email;
-            firebase.auth().onAuthStateChanged(function(user) {
+            firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     // User is signed in.
                     console.log("user has logged in ");
@@ -41,16 +41,18 @@
                     window.href = "login.html";
                 }
             });
+
+            //Reading the reminder days data set by the user.
             function getReminder(email) {
                 db.collection("reminders")
                     .doc(email)
                     .get()
-                    .then(function(reminder) {
+                    .then(function (reminder) {
                         if (reminder.exists) {
                             console.log(reminder.data());
                             const data = reminder.data();
-                            if (data) { 
-                                numbers = data.days; 
+                            if (data) {
+                                numbers = data.days;
                                 days = convertNumbersToDays(numbers);
                                 applyCSSForSelectedDays(days);
                                 console.log(days);
@@ -64,14 +66,14 @@
                 days.forEach(element => {
                     console.log("inside applyCSSForSelectedDays");
                     console.log(element);
-                    $("#"+element).addClass("selected");
-                    $("#"+element).removeClass("unselected");
-                    $("#"+element+"-c").addClass("red");
+                    $("#" + element).addClass("selected");
+                    $("#" + element).removeClass("unselected");
+                    $("#" + element + "-c").addClass("red");
                 });
             }
 
-            $(".days").click(function(){
-                if($(this).hasClass("selected")) {
+            $(".days").click(function () {
+                if ($(this).hasClass("selected")) {
                     // means the day should be unselected
                     $(this).removeClass("selected");
                     $(this).addClass("unselected");
@@ -79,7 +81,7 @@
                     remove(days, $(this).attr('id'));
                     console.log(days);
                     //
-                    $("#"+$(this).attr('id')+"-c").removeClass('red');
+                    $("#" + $(this).attr('id') + "-c").removeClass('red');
 
                 } else {
                     // means the day should be selected
@@ -88,7 +90,7 @@
                     console.log(days);
                     days.push($(this).attr('id'));
                     console.log(days);
-                    $("#"+$(this).attr('id')+"-c").addClass('red');
+                    $("#" + $(this).attr('id') + "-c").addClass('red');
                 }
                 console.log(this);
             });
@@ -106,29 +108,29 @@
                 location.href = "reminder-home.html";
             }
 
+            //Creates or updates the days data of the user.
             document.getElementById("save-button").onclick = function () {
                 const reminder = db.collection("reminders").doc(email);
                 console.log("new value: " + convertDaysToNumbers(days));
                 reminder.update({
-                    days: convertDaysToNumbers(days)
-                }).then(() => {
-                    console.log("Document successfully updated!");
-                    location.href = "reminder-home.html";
-                })
-                .catch((error) => {
-                    // The document probably doesn't exist.
-                    console.error("Error updating document: ", error);
-                });
+                        days: convertDaysToNumbers(days)
+                    }).then(() => {
+                        console.log("Document successfully updated!");
+                        location.href = "reminder-home.html";
+                    })
+                    .catch((error) => {
+                        // The document probably doesn't exist.
+                        console.error("Error updating document: ", error);
+                    });
             }
         });
-            
     </script>
-               
+
     <header>
         <div>
             <button type="button" id="house" class="btn btn-secondary home">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-house-door-fill"
-                    viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill=#86A5D9
+                    class="bi bi-house-door-fill" viewBox="0 0 16 16">
                     <path
                         d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
                 </svg>
@@ -156,7 +158,7 @@
                 <span id="sun-c">Sun</span>
             </h2>
         </div>
-        
+
         <div class="number-pad">
             <button type="button" class="btn btn-outline-primary days" id="mon">Mon</button>
             <button type="button" class="btn btn-outline-primary days" id="tues">Tues</button>
@@ -169,11 +171,12 @@
         <div class="sun-container">
             <br>
             <button type="button" class="btn btn-outline-primary days" id="sun">Sun</button>
-        </div> 
+        </div>
         <div class="savecancel">
             <button type="button" id="cancel-button" class="btn btn-primary cancel">CANCEL</button>
             <button type="button" id="save-button" class="btn btn-primary save">SAVE</button>
         </div>
     </main>
-    </body> 
-    </html>
+</body>
+
+</html>
