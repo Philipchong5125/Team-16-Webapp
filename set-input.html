@@ -8,7 +8,7 @@
 
     #cancel,
     #save {
-        color: white;
+        color: #1E1E24;
         text-decoration: none;
     }
 
@@ -76,7 +76,7 @@
 
     <nav class="navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.html"> WiRi</a>
+            <a class="navbar-brand" href="Homepage.html"> <b>WiRi</b></a>
         </div>
         </div>
     </nav>
@@ -89,7 +89,7 @@
         <form id="input">
             <div>
                 <h2>
-                    I spent <input type="number" placeholder="10" id="time" required></input>
+                    I spent <input type="number" placeholder="10" id="time" pattern="{0, 100}" required></input>
                     minutes meditating today.
                 </h2>
             </div>
@@ -97,7 +97,7 @@
             <div>
                 <h2>
                     I feel like a <input type="number" placeholder="1-10" id="mood" onInput="writeData()"
-                        required></input> today.
+                        pattern="{0,10}" required></input> today.
                 </h2>
             </div>
 
@@ -110,11 +110,10 @@
         </form>
 
         <div class="savecancel">
-            <button type="button" class="btn btn-primary cancel">
-
+            <button type="button" class="btn btn-light cancel">
                 <a href="Homepage.html" id="cancel">CANCEL</a>
             </button>
-            <button class="btn btn-primary save">
+            <button class="btn btn-light save">
                 <a href="Tracker.html" id="save"> SAVE </a>
             </button>
         </div>
@@ -151,25 +150,15 @@
                     }
 
                         db.collection("tracker").doc(email).collection('tracker instance').add({
-                            date: new Date(),
-                            mood: document.getElementById('mood').value,
-                            time: document.getElementById('time').value
+                           
+                                date: new Date(),
+                                mood: document.getElementById('mood').value,
+                                time: document.getElementById('time').value
+                            
                         });
                         console.log("set");
 
                 });
-            }
-
-            function getData() {
-                db.collection("tracker").ref().once('value', function (snapshot) {
-                    snapshot.forEach(function (childSnapshot) {
-                        var childKey = childSnapshot.key;
-                        var childData = childSnapshot.val();
-                        document.getElementById('data').innerHTML = childData[
-                            'time'] + ", " + childData['mood'] + childData(
-                            'date');
-                    })
-                })
             }
         </script>
 

@@ -1,5 +1,5 @@
 body {
-  background-color:#F7F5FB !important;
+  background-color: #86A5D9 !important;
 }
 
 .navbar-brand {
@@ -17,7 +17,7 @@ body {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  background-color: #86A5D9 !important;
+  background-color: #F7F5FB !important;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
