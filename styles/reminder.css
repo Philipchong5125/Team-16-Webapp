@@ -75,7 +75,7 @@ div.switch {
     padding-left: 9%;
 }
 
-/**** this is the CSS for reminer-home.html *****/
+/**** this is the CSS for reminder-home.html *****/
 
 body {
     height: 145%;
@@ -129,6 +129,18 @@ button.back {
 
 }
 
+#reminder-day {
+    color: white;
+}
+
+#reminder-time {
+    color: white;
+}
+
+#hello-user {
+    color: white;
+}
+
 /**** this is the CSS for reminer-day.html *****/
 
 .sun-container {
@@ -154,7 +166,7 @@ button.days.selected {
 }
 
 button.days.unselected {
-    background-color: white;
+    /*background-color: white;*/
     color: #0d6efd;
 }
 
@@ -173,6 +185,34 @@ button.days:hover {
 
 .black {
     color: black;
+}
+
+#mon {
+    color: white;
+}
+
+#tues {
+    color: white;
+}
+
+#wed {
+    color: white;
+}
+
+#thurs {
+    color: white;
+}
+
+#fri {
+    color: white;
+}
+
+#sat {
+    color: white;
+}
+
+#sun {
+    color: white;
 }
 
 /**** this is the CSS for reminder-time.html *****/
