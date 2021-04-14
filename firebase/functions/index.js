@@ -12,15 +12,15 @@ var firebaseConfig = {
     storageBucket: "meditation-app-9f8f1.appspot.com",
     messagingSenderId: "456537085007",
     appId: "1:456537085007:web:41b5aeb2598ed5ed82063a"
-  };
-    
+};
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(); //add this to read/write
 
 /**
-* Here we're using Gmail to send 
-*/
+ * Here we're using Gmail to send 
+ */
 let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -30,7 +30,7 @@ let transporter = nodemailer.createTransport({
 });
 
 
-let sendEmail = function(dest) {
+let sendEmail = function (dest) {
     const mailOptions = {
         from: 'WiRi <wirimeditation@gmail.com>', // Something like: Jane Doe <janedoe@gmail.com>
         to: dest,
@@ -40,8 +40,8 @@ let sendEmail = function(dest) {
         ` // email content in HTML
     };
     return transporter.sendMail(mailOptions, (error, info) => {
-        if (error){
-           console.log(error.toString());
+        if (error) {
+            console.log(error.toString());
         } else {
             console.log('Email sent: ' + info.response);
         }
@@ -77,7 +77,7 @@ cron.schedule('0 * * * * *', () => {
  * @param {*} time 
  */
 function checkDate(days, time) {
-    
+
     // if today does not exist in days array, means today was not set in the reminder
     if (days.indexOf(getToday()) == -1) {
         console.log("checkDate returns false: " + getToday());

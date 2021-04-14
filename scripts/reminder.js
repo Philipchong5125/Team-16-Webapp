@@ -9,7 +9,7 @@ function convertDaysToString(days) {
 
 function convertDayShort(day) {
     var short;
-    switch(day) {
+    switch (day) {
         case 0:
             short = "M";
             break;
@@ -32,7 +32,7 @@ function convertDayShort(day) {
             short = "Sun";
             break;
         default:
-            short = "";    
+            short = "";
     }
     return short;
 }
@@ -50,7 +50,7 @@ function convertNumbersToDays(days) {
 
 function convertNumber(day) {
     var short;
-    switch(day) {
+    switch (day) {
         case 0:
             short = "mon";
             break;
@@ -73,7 +73,7 @@ function convertNumber(day) {
             short = "sun";
             break;
         default:
-            short = "";    
+            short = "";
     }
     return short;
 }
@@ -89,7 +89,7 @@ function convertDaysToNumbers(days) {
 
 function convertDay(day) {
     var number;
-    switch(day) {
+    switch (day) {
         case "mon":
             number = 0;
             break;
@@ -112,14 +112,14 @@ function convertDay(day) {
             number = 6;
             break;
         default:
-            number = -1;    
+            number = -1;
     }
     return number;
 }
 
 function remove(arr, element) {
     const index = arr.indexOf(element);
-    if(index > -1) {
+    if (index > -1) {
         arr.splice(index, 1);
     }
 }
@@ -132,5 +132,3 @@ function convertHoursToArray(time) {
     });
     return result;
 }
-
-

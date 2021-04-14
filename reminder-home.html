@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="styles/homepage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="styles/homepage.css">
 
 
 
@@ -32,19 +32,21 @@
     <link rel="stylesheet" href="./styles/our_bootstrap.css">
 </head>
 <style>
-    .navbar{
-        background-color:#86A5D9 !important;
+    .navbar {
+        background-color: #86A5D9;
     }
-    .navbar-brand{
+
+    .navbar-brand {
         color: white;
     }
 </style>
+
 <body>
     <script>
         $(document).ready(function () {
             var data;
             var email;
-            firebase.auth().onAuthStateChanged(function(user) {
+            firebase.auth().onAuthStateChanged(function (user) {
                 if (user) {
                     // User is signed in.
                     console.log("user has logged in ");
@@ -57,6 +59,7 @@
                     window.href = "login.html";
                 }
             });
+
             function getReminder(email) {
                 db.collection("reminders").doc(email)
                     .get()
@@ -92,10 +95,6 @@
                 location.href = "reminder-time.html";
             }
 
-            // document.getElementById("house").onclick = function () {
-            //     location.href = "Homepage.html";
-            // }
-
             document.getElementById("cancel-button").onclick = function () {
                 location.href = "Homepage.html";
             }
@@ -105,20 +104,20 @@
                 const activated = $("#activateSwitch").prop("checked");
                 console.log("new value: " + activated);
                 reminder.update({
-                    activated: activated
-                }).then(() => {
-                    console.log("Document successfully updated!");
-                    location.href = "Homepage.html";
-                })
-                .catch((error) => {
-                    // The document probably doesn't exist.
-                    console.error("Error updating document: ", error);
-                });
+                        activated: activated
+                    }).then(() => {
+                        console.log("Document successfully updated!");
+                        location.href = "Homepage.html";
+                    })
+                    .catch((error) => {
+                        // The document probably doesn't exist.
+                        console.error("Error updating document: ", error);
+                    });
             }
 
             $('#activateSwitch').on('click', function () {
                 var value = $('#activateSwitch').is(':checked');
-                if(value) {
+                if (value) {
                     $('#activateSwitchLabel').html("Deactivate");
                 } else {
                     $('#activateSwitchLabel').html("Activate");
@@ -138,7 +137,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-        
+
                             <li class="nav-item">
                                 <a href="Homepage.html" class="btn btn-primary"> Home </a>
                             </li>
@@ -155,14 +154,6 @@
                     </div>
                 </div>
             </nav>
-
-            <!-- <button type="button" id="house" class="btn btn-secondary home">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="blue" class="bi bi-house-door-fill"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5z" />
-                </svg>
-            </button> -->
         </div>
     </header>
     <main>
@@ -201,10 +192,14 @@
 
     <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
         <div class="container py-3">
-            <a href="Homepage.html" class="btn btn-primary"> Guided Medition<br><i class="material-icons">&#xe3ac;</i> </a>
-            <a href="reminder-home.html" class="btn btn-primary"> Reminder<br> <i class="material-icons">&#xe003;</i></a>
-            <a href="Tracker.html" class="btn btn-primary"> Tracker<br> <i style="font-size:24px" class="fa">&#xf1fe;</i></a>
-            <a href="set-input.html" class="btn btn-primary"> Daily Input<br><i style="font-size:24px" class="fa">&#xf196;</i></a>
+            <a href="Homepage.html" class="btn btn-primary"> Guided Medition<br><i class="material-icons">&#xe3ac;</i>
+            </a>
+            <a href="reminder-home.html" class="btn btn-primary"> Reminder<br> <i
+                    class="material-icons">&#xe003;</i></a>
+            <a href="Tracker.html" class="btn btn-primary"> Tracker<br> <i style="font-size:24px"
+                    class="fa">&#xf1fe;</i></a>
+            <a href="set-input.html" class="btn btn-primary"> Daily Input<br><i style="font-size:24px"
+                    class="fa">&#xf196;</i></a>
         </div>
     </footer>
 
