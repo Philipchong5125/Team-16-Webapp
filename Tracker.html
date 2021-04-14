@@ -26,11 +26,18 @@
         #pop{
             width: 6em;
         }
+        #chartCanvas{
+            background-color: #F7F5FB ;
+            width: 100%;
+            border-radius: 5%;
+            height: 30em;
+        }
     </style>
     <meta charset="utf-8">
     <title>WiRi</title>
     <meta name="comp1800 boilerplate code" content="my bcit project">
     <meta name="author" content="BCIT">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap for Mobile-first, and JQuery -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -88,8 +95,9 @@
         <p>View Your Progress: <button id="pop" class="btn btn-light save">populate</button></p>
     </div>
 
+    <div id="chartCanvas">
     <canvas id="myChart" width="400" height="150"></canvas>
-
+    </div>
     <footer class="navbar justify-content-evenly bg-primary fixed-bottom">
         <div class="container py-3">
 
