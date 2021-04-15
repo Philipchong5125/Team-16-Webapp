@@ -3,7 +3,7 @@ html {
 }
 
 main {
-    
+
     background-color: #86A5D9;
 }
 
@@ -141,7 +141,7 @@ button.back {
     color: white;
 }
 
-/**** this is the CSS for reminer-day.html *****/
+/**** this is the CSS for reminder-day.html *****/
 
 .sun-container {
 
@@ -166,7 +166,6 @@ button.days.selected {
 }
 
 button.days.unselected {
-    /*background-color: white;*/
     color: #0d6efd;
 }
 
